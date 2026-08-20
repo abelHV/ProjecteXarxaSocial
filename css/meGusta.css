@@ -1,0 +1,470 @@
+/* Variables de color para fácil manejo (usando los colores que ya tenías) */
+:root {
+    --color-background-light: #DE9929; /* Fondo general de la página */
+    --color-card-background: #fff; /* Fondo de las tarjetas */
+    --color-text-dark: #333; /* Texto principal oscuro */
+    --color-text-medium: #555; /* Texto secundario/hero */
+    --color-text-light: #777; /* Texto de fecha */
+    --color-price: #DE9929; /* Color naranja para el precio */
+    --color-heart-default: #aaa; /* Corazón no seleccionado */
+    --color-heart-liked: red; /* Corazón seleccionado */
+    --color-hero-background: #e0e0e0; /* Fondo de la sección hero */
+    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 10px rgba(0, 0, 0, 0.08);
+    --shadow-hover-card: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra para hover de tarjeta original */
+    --shadow-hover-button: 0 6px 15px rgba(0, 0, 0, 0.25); /* Sombra para hover de botón de like */
+}
+
+/* GENERAL LAYOUT & CONTAINER */
+body {
+    background-color: var(--color-background-light);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--color-text-dark);
+}
+
+.contenido-principal {
+    max-width: 1200px;
+    margin: 80px auto 20px auto;
+    padding: 0 20px;
+}
+
+/* HERO SECTION - Ahora incluye la imagen */
+.hero {
+    text-align: center;
+    padding: 40px 20px 60px 20px;
+    background: linear-gradient(135deg, var(--color-hero-background), #e9e9e9);
+    border-radius: 12px;
+    margin-bottom: 50px;
+    box-shadow: var(--shadow-medium);
+    animation: fadeInScale 0.8s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ESTILO PARA LA IMAGEN EN LA SECCIÓN HERO */
+.hero-image {
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 25px;
+    animation: bounceIn 0.8s ease-out;
+    filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* Animación de rebote para la imagen del hero */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(20px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1) translateY(-10px);
+    }
+    70% {
+        transform: scale(0.9) translateY(5px);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+.hero h1 {
+    font-size: 3.5em;
+    color: var(--color-text-dark);
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.4em;
+    color: var(--color-text-medium);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* NO FAVORITES MESSAGE */
+.sin-favoritos {
+    text-align: center;
+    color: var(--color-text-medium);
+    padding: 80px 30px;
+    font-size: 1.5em;
+    background-color: var(--color-card-background);
+    border-radius: 12px;
+    margin: 60px auto;
+    max-width: 900px;
+    box-shadow: var(--shadow-light);
+    border: 1px dashed #ccc;
+}
+
+/* ANNOUNCEMENT GRID (Contenedor de todas las tarjetas) */
+.anuncios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 0;
+}
+
+/* ANNOUNCEMENT CARD (La tarjeta individual de cada publicación) */
+.anuncio-card {
+    background-color: var(--color-card-background);
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    /* Aseguramos que la transición de 'transform' y 'box-shadow' sea suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Quitamos opacity de aquí, ya está en la animación de entrada/salida */
+}
+
+/* EFECTO DE FLOTAR AL PASAR EL RATÓN */
+.anuncio-card:hover {
+    transform: translateY(-8px); /* Desplaza la tarjeta ligeramente más hacia arriba para que sea más notorio */
+    box-shadow: var(--shadow-hover-card); /* Sombra un poco más pronunciada al hover */
+}
+
+/* Animación de entrada para las tarjetas */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.anuncio-card.fade-in {
+    animation: fadeInScale 0.6s ease-out forwards;
+    animation-delay: var(--animation-delay, 0s);
+    opacity: 0; /* Asegura que empieza invisible */
+}
+
+/* Animación de salida (cuando se elimina un favorito) */
+@keyframes fadeOutDown {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        height: auto; /* Empezamos con altura automática */
+        margin-bottom: 25px; /* Margen normal */
+    }
+    to {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+        height: 0; /* Colapsa la tarjeta */
+        margin-bottom: -50px; /* Para que la siguiente tarjeta suba */
+    }
+}
+
+.anuncio-card.fade-out {
+    animation: fadeOutDown 0.5s ease-out forwards;
+    pointer-events: none; /* Deshabilita interacciones durante la animación */
+}
+
+
+.anuncio-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* IMAGE WRAPPER */
+.anuncio-imagen-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f8f8;
+}
+
+.anuncio-imagen-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Aseguramos que no haya transiciones adicionales para la imagen si no se desea */
+    transition: none;
+}
+
+/* INFO CARD */
+.anuncio-info-card {
+    width: 100%;
+    padding: 15px;
+    text-align: left;
+    color: var(--color-text-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.anuncio-info-card h3 {
+    margin: 0;
+    font-size: 1.3em;
+    color: var(--color-text-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+}
+
+.anuncio-info-card .precio {
+    font-weight: bold;
+    color: var(--color-price);
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.anuncio-info-card .fecha-publicacion {
+    font-size: 0.9em;
+    color: var(--color-text-light);
+    margin-top: 5px;
+}
+
+/* LIKE BUTTON */
+.like-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.like-button:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.1);
+}
+
+.heart-icon {
+    fill: var(--color-heart-default);
+    width: 24px;
+    height: 24px;
+    transition: fill 0.3s ease-in-out;
+}
+
+.like-button.liked .heart-icon {
+    fill: var(--color-heart-liked);
+}
+
+/* Animación de "click" del corazón */
+@keyframes animateHeart {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.heart-icon.animate-heart {
+    animation: animateHeart 0.3s ease-out;
+}
+
+/* RESPONSIVENESS */
+@media (max-width: 992px) {
+    .contenido-principal {
+        padding: 0 15px;
+    }
+    .anuncios-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    .hero-image {
+        max-width: 150px;
+    }
+    .hero h1 {
+        font-size: 2.5em;
+    }
+    .hero p {
+        font-size: 1.1em;
+    }
+    .anuncio-imagen-wrapper {
+        height: 180px;
+    }
+    .anuncio-info-card h3 {
+        font-size: 1.2em;
+    }
+    .anuncio-info-card .precio {
+        font-size: 1.4em;
+    }
+    .like-button {
+        padding: 7px;
+        top: 9px;
+        right: 9px;
+    }
+    .heart-icon {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contenido-principal {
+        padding: 0 10px;
+    }
+    .anuncios-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+    .hero {
+        padding: 30px 15px 40px 15px;
+        margin-bottom: 30px;
+    }
+    .hero-image {
+        max-width: 120px;
+        margin-bottom: 15px;
+    }
+    .hero h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+    .hero p {
+        font-size: 0.9em;
+    }
+    .sin-favoritos {
+        padding: 50px 20px;
+        font-size: 1.2em;
+        margin: 30px auto;
+    }
+    .anuncio-imagen-wrapper {
+        height: 150px;
+    }
+    .anuncio-info-card {
+        padding: 12px;
+        gap: 4px;
+    }
+    .anuncio-info-card h3 {
+        font-size: 1.05em;
+    }
+    .anuncio-info-card .precio {
+        font-size: 1.2em;
+    }
+    .anuncio-info-card .fecha-publicacion {
+        font-size: 0.8em;
+    }
+    .like-button {
+        padding: 6px;
+        top: 8px;
+        right: 8px;
+    }
+    .heart-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenido-principal {
+        padding: 0 8px;
+    }
+    .anuncios-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .hero {
+        padding: 25px 10px 30px 10px;
+        margin-bottom: 20px;
+    }
+    .hero-image {
+        max-width: 100px;
+        margin-bottom: 10px;
+    }
+    .hero h1 {
+        font-size: 1.6em;
+    }
+    .hero p {
+        font-size: 0.85em;
+    }
+    .sin-favoritos {
+        padding: 30px 15px;
+        font-size: 1em;
+        margin: 20px auto;
+    }
+    .anuncio-imagen-wrapper {
+        height: 140px;
+    }
+    .anuncio-info-card {
+        padding: 10px;
+    }
+    .anuncio-info-card h3 {
+        font-size: 0.95em;
+    }
+    .anuncio-info-card .precio {
+        font-size: 1.1em;
+    }
+    .anuncio-info-card .fecha-publicacion {
+        font-size: 0.7em;
+    }
+    .like-button {
+        padding: 5px;
+        top: 5px;
+        right: 5px;
+    }
+    .heart-icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* IMPORTANTE: Eliminamos o ajustamos estas reglas problemáticas.
+   La mejor práctica es evitar !important a menos que sea estrictamente necesario.
+   Si INDEXmain.css tiene reglas para .anuncios, lo ideal es ajustar ese archivo
+   o ser más específico con nuestros selectores aquí.
+*/
+/*
+.anuncios, .anuncio, .anuncio-imagen, .anuncio h3, .anuncio .precio {
+    display: initial !important;
+    grid-template-columns: initial !important;
+    gap: initial !important;
+    padding: initial !important;
+    margin: initial !important;
+    background-color: initial !important;
+    box-shadow: initial !important;
+    border-radius: initial !important;
+    width: initial !important;
+    height: initial !important;
+    overflow: initial !important;
+    flex-direction: initial !important;
+    justify-content: initial !important;
+    align-items: initial !important;
+    text-align: initial !important;
+    transition: initial !important;
+    position: initial !important;
+    font-size: initial !important;
+    color: initial !important;
+    font-weight: initial !important;
+    line-height: initial !important;
+    white-space: initial !important;
+    text-overflow: initial !important;
+    -webkit-line-clamp: initial !important;
+    -webkit-box-orient: initial !important;
+    z-index: initial !important;
+    top: initial !important;
+    right: initial !important;
+    left: initial !important;
+    bottom: initial !important;
+}
+*/
+/* Para asegurar que no haya zoom en la imagen al hover de la tarjeta, mantener esta si es necesario */
+.anuncio-card:hover .anuncio-imagen-wrapper img {
+    transform: none; /* Quitamos !important aquí para ver si era el problema */
+}

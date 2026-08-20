@@ -1,0 +1,363 @@
+/* General Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #DE9929; /* Fondo naranja/dorado */
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+}
+
+/* --- Animación de Fondo (Cartas Cayendo) --- */
+.background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.falling-card {
+    position: absolute;
+    width: 100px;
+    height: 140px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: fall linear infinite, spin linear infinite;
+}
+
+@keyframes fall {
+    from {
+        top: -150px;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0.8;
+    }
+    to {
+        top: 100vh;
+        transform: translateX(var(--end-x)) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Contenedor Principal para Margen --- */
+.main-content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0 100px 0; /* Margen superior 50px, inferior 100px */
+    width: 100%;
+    min-height: 100vh;
+    z-index: 2; /* Aseguramos que el contenido esté por encima de las animaciones de fondo */
+}
+
+/* --- Contenedor del Formulario --- */
+.container.register-form-container {
+    background-color: #000; /* Fondo negro */
+    border-radius: 15px; /* Bordes más redondeados */
+    width: 90%;
+    max-width: 600px; /* Ancho ajustado para acomodar dos columnas cómodamente */
+    padding: 50px; /* Más padding para los elementos internos */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra más intensa */
+    text-align: center; /* Centrar títulos */
+    position: relative;
+    overflow: hidden; /* Importante para la animación de despliegue */
+}
+
+/* --- Títulos --- */
+.container h1 {
+    font-size: 3em; /* Títulos más grandes */
+    margin-bottom: 10px;
+    color: #DE9929; /* Naranja/Dorado */
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.container h2 {
+    font-size: 1.8em;
+    margin-bottom: 40px; /* Más espacio debajo del subtítulo */
+    color: #fff; /* Blanco */
+    font-weight: normal;
+}
+
+/* --- Contenedor de la Grilla (para las 2 columnas) --- */
+.form-grid-container {
+    display: grid; /* Usamos Grid para un control más preciso de las columnas */
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual ancho */
+    gap: 25px; /* Espacio entre las columnas y las filas */
+    margin-bottom: 25px; /* Espacio después de la grilla de campos */
+}
+
+.form-group {
+    /* No necesita flex: 1; aquí porque Grid ya maneja el ancho */
+    margin-bottom: 0; /* Reiniciamos el margen para que el gap de Grid lo maneje */
+}
+
+/* --- Labels Fijos --- */
+.form-group label {
+    display: block; /* Cada label en su propia línea */
+    text-align: left; /* Alinea el texto del label a la izquierda */
+    margin-bottom: 8px; /* Espacio entre el label y el input */
+    font-size: 1em;
+    color: #fff; /* Color blanco para los labels */
+    font-weight: bold; /* Hacer los labels un poco más prominentes */
+    transition: color 0.3s ease; /* Transición para el color al enfocar */
+}
+
+/* --- Inputs --- */
+.form-group input {
+    width: 100%;
+    padding: 18px 20px; /* Padding generoso */
+    border: 2px solid #333; /* Borde más pronunciado y oscuro */
+    border-radius: 10px; /* Bordes más redondeados */
+    background-color: #111; /* Fondo de input muy oscuro */
+    color: #fff; /* Texto blanco */
+    font-size: 1.1em;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    text-align: left; /* Texto del input alineado a la izquierda */
+}
+
+/* --- Placeholders --- */
+.form-group input::placeholder {
+    color: #888; /* Color gris suave para el placeholder */
+    opacity: 1; /* Asegura que el placeholder sea visible */
+    transition: opacity 0.3s ease;
+}
+
+/* Ocultar placeholder al enfocar */
+.form-group input:focus::placeholder {
+    opacity: 0;
+}
+
+/* --- Efecto de Brillo (Glow) en Inputs al Enfocar --- */
+.form-group input.input-focused,
+.form-group input:focus { /* Añadimos la clase input-focused del JS y el focus */
+    border-color: #DE9929; /* Borde naranja/dorado */
+    box-shadow: 0 0 15px rgba(222, 153, 41, 0.6); /* Brillo más intenso */
+    background-color: #000; /* Vuelve a negro sólido al enfocar */
+}
+/* Cambia el color del label cuando su input está enfocado */
+.form-group input:focus + label { /* Este selector funcionará si el label va INMEDIATAMENTE después del input (no es tu caso actual) */
+    color: #DE9929; /* Color naranja cuando enfocas */
+}
+/* Solución para label que está ANTES del input: usar la clase `input-focused` */
+.form-group input.input-focused + label, /* Si el label va después del input */
+.form-group input.input-focused { /* Si queremos el color en el label del grupo */
+    /* Esto no funcionará si el label va ANTES del input en el HTML */
+    /* Para el label que está ANTES del input, tendríamos que aplicar la clase al .form-group */
+}
+
+/* Para que el label cambie de color al enfocar su input */
+.form-group input:focus + label { /* Este selector busca el label que sigue a un input enfocado */
+    /* Este selector NO FUNCIONA porque el label está ANTES del input en tu HTML */
+}
+/* Solución para label ANTES del input: Usar una clase en el .form-group */
+.form-group.has-focus label { /* Cuando el .form-group tenga la clase 'has-focus' */
+    color: #DE9929;
+}
+
+
+/* --- Botones --- */
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px; /* Más espacio superior para los botones */
+    gap: 20px;
+}
+
+.form-buttons button {
+    flex: 1;
+    padding: 15px 25px; /* Padding generoso */
+    font-size: 1.1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.btn-cancelar {
+    background-color: #888; /* Gris */
+    color: #fff;
+}
+
+.btn-cancelar:hover {
+    background-color: #777; /* Gris más oscuro */
+    transform: translateY(-3px); /* Efecto de levantamiento */
+}
+
+.btn-crear-cuenta {
+    background-color: #DE9929; /* Naranja/Dorado */
+    color: #000; /* Texto negro en el botón naranja */
+    box-shadow: 0 5px 15px rgba(222, 153, 41, 0.4); /* Sombra para el botón principal */
+}
+
+.btn-crear-cuenta:hover {
+    background-color: #b37a20; /* Tono de naranja más oscuro */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(222, 153, 41, 0.6); /* Sombra más intensa al hover */
+}
+
+/* --- Animación: Despliegue del Formulario y Brillo en Botones --- */
+
+/* Animación de Despliegue del Formulario */
+.form-unfold {
+    animation: unfold 1s ease-out forwards;
+    transform-origin: center top;
+    opacity: 0;
+    transform: scaleY(0);
+}
+
+@keyframes unfold {
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+/* Animación de Brillo en Botones (glow-on-hover) */
+.glow-on-hover {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.glow-on-hover:hover:before {
+    left: 100%;
+}
+
+
+/* --- Animaciones de Entrada (para títulos y campos) --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0; /* Asegura que no se vea antes de la animación */
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft 0.7s ease-out forwards;
+    opacity: 0;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 0.7s ease-out forwards;
+    opacity: 0;
+}
+
+/* Retrasos para animaciones escalonadas */
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+.delay-3 { animation-delay: 0.7s; }
+.delay-4 { animation-delay: 0.8s; }
+.delay-5 { animation-delay: 0.9s; }
+.delay-6 { animation-delay: 1.0s; }
+.delay-7 { animation-delay: 1.1s; }
+.delay-8 { animation-delay: 1.2s; }
+
+
+/* --- Responsive Design --- */
+@media (max-width: 680px) { /* Punto de quiebre para apilar columnas */
+    .main-content-wrapper {
+        padding: 30px 0 70px 0; /* Ajustar margen para móviles */
+    }
+    .container.register-form-container {
+        padding: 35px 25px;
+        border-radius: 10px;
+    }
+    .container h1 {
+        font-size: 2.2em;
+    }
+    .container h2 {
+        font-size: 1.5em;
+        margin-bottom: 30px;
+    }
+    .form-grid-container {
+        grid-template-columns: 1fr; /* Una sola columna en móviles */
+        gap: 0; /* Sin gap entre filas/columnas apiladas */
+    }
+    .form-group {
+        margin-bottom: 20px; /* Margen entre campos apilados */
+    }
+    .form-group input {
+        padding: 15px 18px; /* Ajuste de padding para móviles */
+        font-size: 1em;
+    }
+    .form-buttons {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 35px;
+    }
+    .form-buttons button {
+        padding: 14px 20px;
+        font-size: 1em;
+    }
+}
+

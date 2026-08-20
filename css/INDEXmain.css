@@ -1,0 +1,542 @@
+/* INDEXmain.css */
+
+/* Estilos generales */
+body {
+    margin: 0; /* Eliminamos el margen predeterminado del body */
+    background-color: #DE9929;
+    font-family: Arial, sans-serif;
+    z-index: 2;
+    max-width: 100vw;
+    line-height: 1.7; /* Del nuevo_diseno.css */
+    color: #333; /* Del nuevo_diseno.css */
+}
+
+/* --- Estilos para el Popup de Estado (DUPLICADO PARA INDEX.PHP) --- */
+/* Si tuvieras un 'common.css' o similar, iría ahí para evitar duplicación. */
+.status-popup {
+    position: fixed; /* Fijo en la pantalla */
+    top: -100px; /* Inicia fuera de la pantalla, arriba */
+    left: 50%; /* Centrado horizontalmente */
+    transform: translateX(-50%); /* Ajuste fino para centrar con left: 50% */
+    padding: 15px 30px;
+    border-radius: 8px;
+    color: #fff; /* Texto blanco */
+    font-weight: bold;
+    font-size: 1.1em;
+    opacity: 0; /* Invisible por defecto */
+    /* Animación de entrada: se desliza hacia abajo y aparece */
+    transition: top 0.5s ease-out, opacity 0.5s ease-out; /* Transición para entrada */
+    z-index: 10000; /* Asegura que esté por encima de todo lo demás */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    min-width: 250px; /* Ancho mínimo para el mensaje */
+    text-align: center;
+}
+
+/* Estado activo del popup (cuando se muestra) */
+.status-popup.active {
+    top: 20px; /* Posición final: desliza hacia abajo hasta 20px del borde superior */
+    opacity: 1; /* Completamente visible */
+}
+
+/* NUEVA CLASE: Estado de salida del popup para INDEX.PHP */
+/* La misma que usamos en cssSesion.css para coherencia.
+   Si quieres que salga hacia arriba como el original, puedes poner top: -100px; en lugar de 100px. */
+.status-popup.exit {
+    top: -100px; /* Se desliza hacia arriba y fuera de la pantalla */
+    opacity: 0; /* Se desvanece mientras sube */
+    transition: top 0.5s ease-in, opacity 0.5s ease-in; /* Animación de salida */
+}
+
+
+/* Colores específicos para éxito y error */
+.status-popup.success {
+    background-color: #4CAF50; /* Verde brillante */
+}
+
+.status-popup.error {
+    background-color: #f44336; /* Rojo vibrante */
+}
+
+
+.content {
+    position: relative;
+    z-index: 1;
+    color: black;
+    text-align: center;
+    margin: 30px auto; /* Añadimos margen para separarlo de otros elementos */
+    padding: 20px; /* Añadimos un poco de padding interno */
+    background-color: #fff; /* Fondo blanco para el contenido */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombreado mediano */
+}
+.logo {
+    font-weight: bold;
+    font-size: 2.5em;
+    z-index: 2;
+    padding: 1%;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Header */
+.headerx {
+    position: relative;
+    display: flex;
+    justify-content: space-between; /* Espacio entre logo e iconos */
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 6em;
+    z-index: 2;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    z-index: 1001; /* Asegura que esté por encima de otros elementos */
+}
+
+.header-icons a {
+    margin-top: 8px;
+}
+
+.fuego-icon {
+    height: 2.5em; /* Ajusta el tamaño según necesites */
+    width: auto;
+    margin-right: 2em; /* Espacio entre el icono de fuego y el user-menu */
+    cursor: pointer;
+}
+
+.user-menu {
+    position: relative;
+    z-index: 1000;
+}
+
+.iconx {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 1em
+}
+
+.user-icon {
+    height: 2.5em;
+    width: 2.5em;
+}
+
+.dropdown {
+    position: absolute;
+    top: 3em;
+    right: 0;
+    background-color: #fff;
+    color: #000;
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+    min-width: 12em;
+    z-index: 2000;
+}
+
+.dropdown.visible {
+    display: block;
+}
+
+.dropdown li {
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.dropdown li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    border: 2px solid transparent;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    width: 7em;
+}
+
+.dropdown li a:hover {
+    background-color: #ffc107;
+    color: #fff;
+    border-color: #ffc107;
+    width: 7em;
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 800px) {
+    .fuego-icon {
+        height: 2em; /* Reduce el tamaño en pantallas pequeñas */
+        margin-right: 0.5em;
+    }
+
+    .user-icon {
+        height: 2em;
+        width: 2em;
+    }
+}
+
+.menu-categorias {
+    position: relative;
+    display: flex;
+    width: 100%;
+    background-color: #294e73; /* Mantenemos el azul oscuro siempre */
+    color: #fff;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    box-sizing: border-box; /* Añade esta línea */
+}
+
+.menu-categorias.sticky {
+    position: fixed;
+    top: 0; /* Aseguramos que esté pegado a la parte superior */
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+}
+
+.menu-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.menu-lista li a {
+    color: #f8f9fa;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.menu-lista li a:hover {
+    background-color: #0056b3; /* Azul акцент al hacer hover */
+}
+
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 101;
+}
+
+.hamburger-btn .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+    border-radius: 1.5px;
+}
+
+.menu-lista.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Ajustar según la altura del menú */
+    left: 0;
+    background-color: #294e73;
+    width: 100%;
+    align-items: center;
+    padding: 15px 0;
+    gap: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.menu-lista.open li {
+    width: 100%;
+    text-align: center;
+}
+
+@media (max-width: 920px) { /* Cambiado de 800px a 920px para el menú */
+    .menu-lista {
+        display: none;
+    }
+
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .menu-categorias {
+        justify-content: space-between;
+    }
+}
+
+/* Carrusel - Nuevo Diseño Profesional */
+.carousel-container {
+    width: 60%; /* Reducimos el ancho del contenedor */
+    margin: 30px auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    aspect-ratio: 3 / 1; /* Establecemos una relación de aspecto para hacerlo más estirado (ancho / alto) */
+}
+
+.carousel-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%; /* Aseguramos que el wrapper ocupe todo el alto del contenedor */
+    transition: transform 0.5s ease-in-out;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+}
+
+.carousel-item {
+    min-width: 100%;
+    height: 100%; /* Aseguramos que cada item ocupe todo el alto del wrapper */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: center;
+}
+
+.carousel-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Cambiamos a contain para que la imagen se ajuste dentro sin recortarse, manteniendo su relación de aspecto */
+    border-radius: 0;
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    left: 10px; /* Reducimos el padding para que estén más cerca de los bordes */
+    right: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    z-index: 0;
+}
+
+.carousel-controls button {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    font-size: 1.5em; /* Reducimos el tamaño de los botones */
+    cursor: pointer;
+    padding: 8px; /* Reducimos el padding de los botones */
+    border-radius: 5px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.carousel-controls button:hover {
+    opacity: 1;
+    z-index: 0;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 5px; /* Acercamos los indicadores al borde inferior */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    z-index: 0;
+}
+
+.carousel-indicators button {
+    display: block;
+    width: 8px; /* Reducimos el tamaño de los indicadores */
+    height: 8px;
+    border-radius: 50%;
+    background-color: #bbb;
+    border: none;
+    margin: 0 4px; /* Reducimos el margen entre indicadores */
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.carousel-indicators button.active {
+    background-color: #333;
+    opacity: 1;
+}
+
+.carousel-wrapper.dragging {
+    cursor: grab;
+}
+
+/* Footer (sin modificar) */
+#footer {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 2em;
+    position: relative;
+    overflow: hidden;
+}
+
+#footerCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.footer-container {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.footer-logo p {
+    font-size: 0.9em;
+}
+
+.footer-social h3 {
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin: 0 0.5em;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.social-icons img:hover {
+    opacity: 1;
+}
+
+.footer-bottom {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.8em;
+}
+
+#footerText {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-logo,
+    .footer-social {
+        margin-bottom: 1em;
+    }
+}
+
+/* Hero Section (del nuevo_diseno.css, integrado) */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 40px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    margin: 30px auto;
+    max-width: 1200px;
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 40px;
+}
+
+.hero-content h1 {
+    font-size: 2.8em;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.explore-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #294e73; /* Un azul vibrante como акцент */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.explore-button:hover {
+    background-color: #0056b3;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2em;
+    }
+
+    .hero-image {
+        order: -1; /* Mostrar la imagen encima en pantallas pequeñas */
+        margin-bottom: 30px;
+    }
+}

@@ -1,0 +1,271 @@
+/* Universal Box-Sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Global Body & Background --- */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100vh; /* Full viewport height */
+    background-color: #de9929; /* Original background color */
+    overflow: hidden; /* Prevent scrolling, especially for card animation */
+    position: relative; /* Base for absolute positioning of animation */
+}
+
+/* --- Floating Home Icon Button --- */
+.home-icon-button {
+    position: absolute;
+    top: 25px; /* Distance from top */
+    left: 30px; /* Distance from left */
+    font-size: 2.2em; /* Larger icon size */
+    color: rgba(255, 255, 255, 0.7); /* Subtle white color */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+    z-index: 100; /* Ensure it's on top */
+    text-decoration: none; /* Remove underline */
+}
+
+.home-icon-button:hover {
+    color: #fff; /* Bright white on hover */
+    transform: scale(1.1) rotate(5deg); /* Slightly larger and rotated on hover */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* More prominent shadow */
+    cursor: pointer; /* Indicate it's clickable */
+}
+
+/* --- Estilos para el Popup de Estado (Aplicables a InicioSesion.php y index.php) --- */
+.status-popup {
+    position: fixed; /* Fijo en la pantalla */
+    top: -100px; /* Inicia fuera de la pantalla, arriba */
+    left: 50%; /* Centrado horizontalmente */
+    transform: translateX(-50%); /* Ajuste fino para centrar con left: 50% */
+    padding: 15px 30px;
+    border-radius: 8px;
+    color: #fff; /* Texto blanco */
+    font-weight: bold;
+    font-size: 1.1em;
+    opacity: 0; /* Invisible por defecto */
+    /* Animación de entrada: se desliza hacia abajo y aparece */
+    transition: top 0.5s ease-out, opacity 0.5s ease-out; /* Transición para entrada y salida */
+    z-index: 10000; /* Asegura que esté por encima de todo lo demás */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    min-width: 250px; /* Ancho mínimo para el mensaje */
+    text-align: center;
+}
+
+/* Estado activo del popup (cuando se muestra) */
+.status-popup.active {
+    top: 20px; /* Posición final: desliza hacia abajo hasta 20px del borde superior */
+    opacity: 1; /* Completamente visible */
+}
+
+/* Colores específicos para éxito y error */
+.status-popup.success {
+    background-color: #4CAF50; /* Verde brillante */
+}
+
+.status-popup.error {
+    background-color: #f44336; /* Rojo vibrante */
+}
+
+
+/* --- Login Form Container --- */
+.login-container {
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    width: 22em;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 1000;
+    max-height: 28em;
+
+    /* Propiedades por defecto que aseguran que el contenedor no sea invisible si la animación no se aplica */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- ANIMACIÓN DE ENTRADA PARA EL CONTENEDOR DE LOGIN (SOLO SI SE APLICA LA CLASE 'animated-on-load') --- */
+.login-container.animated-on-load {
+    opacity: 0; /* Empieza invisible si la animación se aplica */
+    transform: translateY(50px); /* Empieza ligeramente por debajo de su posición final si la animación se aplica */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Aplica la animación */
+    animation-delay: 0.5s; /* Retrasa el inicio después de cargar la página */
+}
+
+/* Keyframes para la animación del contenedor (sin cambios) */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Resto de estilos del formulario (input-group, botones, forgotPasswd) sin cambios */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+    /* Animación para los grupos de input (estas animaciones también se aplicarán
+        solo si .login-container.animated-on-load está presente, si no,
+        los elementos aparecerán directamente al estar el contenedor visible) */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+}
+/* Retrasos escalonados para los grupos de input */
+.input-group:nth-of-type(1) { animation-delay: 1.1s; }
+.input-group:nth-of-type(2) { animation-delay: 1.3s; }
+
+.login-container h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    /* Animación para el título */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+/* ... (resto de tus estilos de input, botones, etc. sin cambios) ... */
+.input-group label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+}
+
+.botones{
+    background-color: #DE9929;
+    color: white;
+    transition: 0.5s;
+    width: 48%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.botones:hover{
+    background-color: #b37a20;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    /* Animación para el grupo de botones */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+    animation-delay: 1.6s;
+}
+
+.forgotPasswd {
+    margin: 1.5em 0 0;
+    /* Animación para el enlace de "olvidar contraseña" */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+    animation-delay: 1.9s;
+}
+
+#forgotPasswd {
+    color: white;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+#forgotPasswd:hover {
+    color: #777;
+}
+
+/* Resto de estilos (animación de cartas, media queries, grid) sin cambios */
+.card-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.falling-card {
+    position: absolute;
+    width: 100px;
+    height: 140px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: fall linear infinite, spin linear infinite;
+}
+
+@keyframes fall {
+    from {
+        top: -150px;
+        left: calc(100vw * var(--start-x));
+    }
+    to {
+        top: 100vh;
+        left: calc(100vw * var(--end-x));
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%;
+        padding: 25px;
+    }
+    .login-container h1 {
+        font-size: 28px;
+    }
+    .input-group label,
+    .input-group input,
+    .botones {
+        font-size: 15px;
+    }
+    .home-icon-button {
+        font-size: 1.8em;
+        top: 15px;
+        left: 15px;
+    }
+    .status-popup {
+        min-width: unset;
+        width: 90%;
+        left: 5%;
+        transform: translateX(0);
+    }
+}
+/* Grid system remains */
+.col-1 { width: 8.33%; } .col-2 { width: 16.66%; } .col-3 { width: 25%; } .col-4 { width: 33.33%; } .col-5 { width: 41.66%; } .col-6 { width: 50%; } .col-7 { width: 58.33%; } .col-8 { width: 66.66%; } .col-9 { width: 75%; } .col-10 { width: 83.33%; } .col-11 { width: 91.66%; } .col-12 { width: 100%; }
+@media only screen and (min-width: 576px) { .col-sm-1 { width: 8.33%; } .col-sm-2 { width: 16.66%; } .col-sm-3 { width: 25%; } .col-sm-4 { width: 33.33%; } .col-sm-5 { width: 41.66%; } .col-sm-6 { width: 50%; } .col-sm-7 { width: 58.33%; } .col-sm-8 { width: 66.66%; } .col-sm-9 { width: 75%; } .col-sm-10 { width: 83.33%; } .col-sm-11 { width: 91.66%; } .col-sm-12 { width: 100%; } }
+@media only screen and (min-width: 768px) { .col-md-1 { width: 8.33%; } .col-md-2 { width: 16.66%; } .col-md-3 { width: 25%; } .col-md-4 { width: 33.33%; } .col-md-5 { width: 41.66%; } .col-md-6 { width: 50%; } .col-md-7 { width: 58.33%; } .col-md-8 { width: 66.66%; } .col-md-9 { width: 75%; } .col-md-10 { width: 83.33%; } .col-md-11 { width: 91.66%; } .col-md-12 { width: 100%; } }
+@media only screen and (min-width: 992px) { .col-lg-1 { width: 8.33%; } .col-lg-2 { width: 16.66%; } .col-lg-3 { width: 25%; } .col-lg-4 { width: 33.33%; } .col-lg-5 { width: 41.66%; } .col-lg-6 { width: 50%; } .col-lg-7 { width: 58.33%; } .col-lg-8 { width: 66.66%; } .col-lg-9 { width: 75%; } .col-lg-10 { width: 83.33%; } .col-lg-11 { width: 91.66%; } .col-lg-12 { width: 100%; } }
+@media only screen and (min-width: 1200px) { .col-xl-1 { width: 8.33%; } .col-xl-2 { width: 16.66%; } .col-xl-3 { width: 25%; } .col-xl-4 { width: 33.33%; } .col-xl-5 { width: 41.66%; } .col-xl-6 { width: 50%; } .col-xl-7 { width: 58.33%; } .col-xl-8 { width: 66.66%; } .col-xl-9 { width: 75%; } .col-xl-10 { width: 83.33%; } .col-xl-11 { width: 91.66%; } .col-xl-12 { width: 100%; } }
+@media only screen and (min-width: 1400px) { .col-xxl-1 { width: 8.33%; } .col-xxl-2 { width: 16.66%; } .col-xxl-3 { width: 25%; } .col-xxl-4 { width: 33.33%; } .col-xxl-5 { width: 41.66%; } .col-xxl-6 { width: 50%; } .col-xxl-7 { width: 58.33%; } .col-xxl-8 { width: 66.66%; } .col-xxl-9 { width: 75%; } .col-xxl-10 { width: 83.33%; } .col-xxl-11 { width: 91.66%; } .col-xxl-12 { width: 100%; } }

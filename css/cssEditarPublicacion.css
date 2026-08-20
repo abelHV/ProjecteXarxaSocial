@@ -1,0 +1,254 @@
+/* General body and container styles for dark theme, assuming INDEXmain.css sets a base */
+body {
+    background-color: #f7a73f;
+    color: #f0f0f0;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.contenido-principal {
+    max-width: 900px;
+    margin: 80px auto 50px auto; /* Ajusta el margen superior para el header y menú */
+    padding: 20px;
+    background-color: #222222;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.edit-post-container h1 {
+    color: #e0e0e0;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    border-bottom: 2px solid #444;
+    padding-bottom: 15px;
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #e0e0e0;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+    width: calc(100% - 22px); /* Ajuste para padding y borde */
+    padding: 11px;
+    border: 1px solid #555;
+    border-radius: 6px;
+    background-color: #333333;
+    color: #f0f0f0;
+    font-size: 1em;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #bbbbbb;
+    font-size: 0.85em;
+}
+
+/* Specific styles for the map iframe and its container */
+#map {
+    width: 100%;
+    height: 350px; /* Asegura una altura visible */
+    border: none;
+    border-radius: 5px;
+    background-color: #383838; /* Color de fondo mientras carga o si está vacío */
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+    margin-top: 25px; /* Más espacio para separar del campo anterior */
+}
+
+.map-help-text {
+    display: block;
+    margin-top: 10px;
+    color: #bbb;
+    font-size: 0.85em;
+    text-align: center; /* Centrar el texto de ayuda del mapa */
+}
+
+
+/* Form Actions (Buttons) */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+}
+
+.save-button,
+.delete-button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.save-button {
+    background-color: #28a745; /* Verde */
+}
+
+.save-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.delete-button {
+    background-color: #dc3545; /* Rojo */
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+/* Messages */
+.message {
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Confirm Delete Popup */
+.confirm-popup-overlay {
+    display: none; /* Hidden by default - ¡ESTE ES EL CAMBIO CLAVE! */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Las siguientes propiedades 'flex' se aplicarán cuando JavaScript cambie el 'display' a 'flex' */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.confirm-popup-content {
+    background-color: #2a2a2a;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    border: 1px solid #444;
+}
+
+.confirm-popup-content h3 {
+    color: #e0e0e0;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.confirm-popup-content p {
+    color: #ccc;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.confirm-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.btn-cancel,
+.btn-confirm-delete {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    flex: 1; /* Para que los botones ocupen el mismo ancho */
+}
+
+.btn-cancel {
+    background-color: #6c757d; /* Gris */
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+.btn-confirm-delete {
+    background-color: #dc3545; /* Rojo */
+    color: white;
+}
+
+.btn-confirm-delete:hover {
+    background-color: #c82333;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .contenido-principal {
+        margin: 60px 10px 30px 10px;
+        padding: 15px;
+    }
+
+    .edit-post-container h1 {
+        font-size: 1.8em;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .save-button, .delete-button {
+        width: 100%;
+        padding: 15px;
+    }
+}

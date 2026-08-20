@@ -1,0 +1,137 @@
+/* --- Estilos generales para la página de Pokémon --- */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #DE9929;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.contenido-principal {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* --- Estilos para la sección Hero --- */
+.hero {
+    background-color: #fdeedc; /* Un tono suave para el fondo del hero */
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 30px;
+}
+
+.hero-content h1 {
+    color: #333; /* Amarillo Pokémon más vibrante */
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-content p {
+    color: #555;
+    font-size: 1.1em;
+    max-width: 800px;
+    margin: 0 auto 20px;
+}
+
+.hero-image-juego {
+    max-width: 200px;
+    margin: 20px auto 0;
+}
+
+.hero-image-juego img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Estilos para la sección de Novedades --- */
+.novedades-juego {
+    padding: 20px 0;
+}
+
+.novedad {
+    display: flex;
+    margin-bottom: 40px;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 30px;
+}
+
+.novedad:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.novedad-imagen {
+    flex: 0 0 35%;
+    padding-right: 20px;
+}
+
+.novedad-imagen img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    object-fit: cover; /* Para que la imagen cubra el contenedor */
+}
+
+.novedad-texto {
+    flex: 1;
+}
+
+.novedad-texto h2 {
+    color: #3a5a98; /* Un azul más elegante */
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.novedad-texto p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.fecha-publicacion {
+    color: #777;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/* --- Variante para invertir el orden de imagen y texto --- */
+.novedad.invertida {
+    flex-direction: row-reverse;
+}
+
+.novedad.invertida .novedad-imagen {
+    padding-left: 20px;
+    padding-right: 0;
+}
+
+/* --- Media query para pantallas más pequeñas --- */
+@media (max-width: 768px) {
+    .novedad {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .novedad.invertida {
+        flex-direction: column;
+    }
+
+    .novedad-imagen {
+        width: 100%;
+        padding-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .novedad.invertida .novedad-imagen {
+        padding-left: 0;
+    }
+}

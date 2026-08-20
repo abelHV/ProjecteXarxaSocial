@@ -1,0 +1,303 @@
+body {
+    margin: 0; /* Eliminamos el margen predeterminado del body */
+    background-color: #DE9929;
+    font-family: Arial, sans-serif;
+    z-index: 2;
+    max-width: 100vw;
+}
+.headerx {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  padding: 15px 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 6em;
+  z-index: 2;
+  margin-top: 0 !important; /* Aseguramos que no haya margen superior */
+
+}
+
+header {
+  z-index: 101;
+  padding: 2em;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 2.5em;
+  z-index: 2;
+  padding: 1%;
+}
+
+
+#userIcon {
+  position: absolute; 
+  right: 1%;
+  margin-top: -1.55em;
+  margin-right: .65em;
+  z-index: 1000;
+}
+#dropdownMenu{
+  position: absolute; 
+  right: 1%;
+  margin-top: -1em;
+  margin-right: 1em;
+  z-index: 1000;
+}
+
+.user-menu {
+  position: relative;
+  z-index: 1000;
+}
+
+.iconx {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user-icon {
+  height: 2.5em;
+  width: 2.5em;
+}
+
+.arrow {
+  margin-left: 5px;
+  font-size: 16px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 3em;
+  right: 0;
+  background-color: #fff;
+  color: #000;
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: none;
+  min-width: 12em;
+  z-index: 103;
+}
+.dropdown.visible {
+  display: block;
+}
+
+.dropdown li {
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.dropdown li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  border: 2px solid transparent;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  width: 7em;
+}
+
+.dropdown li a:hover {
+  background-color: #ffc107;
+  color: #fff;
+  border-color: #ffc107;
+  width: 7em;
+
+}
+
+
+  
+
+        /* Estilos para las sugerencias de búsqueda */
+        #suggestions {
+        position: absolute;
+        top: calc(100% + 5px); /* Ajustar la distancia */
+        width: 60%;
+        background-color: #fff; /* Fondo blanco para coincidir con los anuncios */
+        border: 1px solid #ddd; /* Borde sutil */
+        border-top: none;
+        border-radius: 4px; /* Bordes ligeramente redondeados */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 1.5em; /* Tamaño de fuente un poco más pequeño */
+    }
+
+    #suggestions li {
+        padding: 8px 12px; /* Espacio interior reducido */
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+        color: #333; /* Color de texto oscuro */
+            border-radius: 8px; /* Bordes ligeramente redondeados */
+
+    }
+
+    #suggestions li:hover {
+        background-color: #f5f5f5; /* Gris muy claro al pasar el ratón */
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+
+    }
+
+    .divSearch {
+      position: relative;
+      display: flex;
+      justify-content: center;
+     
+     width: 100%;
+      background-color: #294e73; /* Mantenemos el azul oscuro siempre */
+      color: #fff;
+      padding: 15px 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 0;
+      box-sizing: border-box; /* Añade esta línea */
+        
+    }
+
+   
+
+    .divSearch input[type=text] {
+        padding: 8px; /* Reducir el padding */
+        border: 1px solid #ccc;
+        border-radius: 30px; /* Bordes ligeramente redondeados */
+        text-align: center;
+        width: 60%;
+        height: 2.2em; /* Reducir la altura */
+        font-size: 0.9em; /* Reducir el tamaño de la fuente */
+        background-color: #f9f9f9; /* Fondo claro */
+        color: #333;
+    }
+
+    .divSearch input[type=text]:focus {
+        outline: none;
+
+        border-color: #DE9929; /* Usar tu color amarillo/dorado al enfocar */
+        box-shadow: 0 0 5px rgba(222, 153, 41, 0.5); /* Sombra suave con tu color */
+    }
+
+    .divSearch .lupa {
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1.5em; /* Reducir el tamaño de la lupa */
+        height: auto;
+        cursor: pointer;
+        opacity: 0.6; /* Lupa un poco más sutil */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .divSearch .lupa:hover {
+        opacity: 1;
+
+    }
+
+    .divSearch.sticky {
+    position: fixed;
+    top: 0em; /* Ajusta este valor a la altura de tu header (6em) */
+    left: 0;
+    width: 100%; /* Asegúrate de que ocupe todo el ancho */
+    z-index: 100; /* Asegúrate de que esté por encima de otros elementos */
+    background-color: #343a40; /* Mantén el color de fondo */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Añade una sombra para destacar */
+}
+
+body.sticky-search {
+    padding-top: 7.6em; /* Ajusta este valor a la altura del header + barra de búsqueda */
+}
+
+
+
+  /* ------------------------FOOTER----------------------------------------------------------------- */
+  #footer {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 2em;
+    position: relative;
+    overflow: hidden;
+}
+
+#footerCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.footer-container {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.footer-logo p {
+    font-size: 0.9em;
+}
+
+.footer-social h3 {
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin: 0 0.5em;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.social-icons img:hover {
+    opacity: 1;
+}
+
+.footer-bottom {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.8em;
+}
+
+#footerText {
+    margin: 0;
+}
+
+@media (max-width: 800px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-logo,
+    .footer-social {
+        margin-bottom: 1em;
+    }
+}

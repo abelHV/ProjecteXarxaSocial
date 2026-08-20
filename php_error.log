@@ -1,0 +1,21 @@
+[23-May-2025 14:25:39 UTC] --- Inicio de la ejecución de editarPublicacion.php ---
+[23-May-2025 14:25:47 UTC] --- Inicio de la ejecución de editarPublicacion.php ---
+[23-May-2025 14:25:47 UTC] DEBUG: POST - Action: update_publicacion
+[23-May-2025 14:25:47 UTC] DEBUG: Valor de categoria recibido del formulario: 'Pokemon'
+[23-May-2025 14:25:47 UTC] DEBUG: Valor de titulo recibido del formulario: 'pokemon'
+[23-May-2025 14:25:47 UTC] DEBUG: Valor de precio recibido del formulario: '80'
+[23-May-2025 14:25:47 UTC] DEBUG: Publicacion ID en POST: 9
+[23-May-2025 14:25:47 UTC] DEBUG: User ID en POST: 1
+[23-May-2025 14:25:47 UTC] DEBUG: bind_param exitoso. Intentando ejecutar UPDATE.
+[23-May-2025 14:25:47 UTC] DEBUG: UPDATE de publicación ejecutado exitosamente.
+[23-May-2025 14:27:47 UTC] --- Inicio de la ejecución de editarPublicacion.php ---
+[23-May-2025 14:28:00 UTC] --- Inicio de la ejecución de editarPublicacion.php ---
+[23-May-2025 14:28:00 UTC] DEBUG: POST - Action: update_publicacion
+[23-May-2025 14:28:00 UTC] DEBUG: Valor de categoria recibido del formulario: 'Pokemon'
+[23-May-2025 14:28:00 UTC] DEBUG: Valor de titulo recibido del formulario: 'pokemon'
+[23-May-2025 14:28:00 UTC] DEBUG: Valor de precio recibido del formulario: '80'
+[23-May-2025 14:28:00 UTC] DEBUG: Publicacion ID en POST: 9
+[23-May-2025 14:28:00 UTC] DEBUG: User ID en POST: 1
+[23-May-2025 14:28:00 UTC] DEBUG: bind_param exitoso. Intentando ejecutar UPDATE.
+[23-May-2025 14:28:00 UTC] DEBUG: UPDATE de publicación ejecutado exitosamente.
+[23-May-2025 14:28:39 UTC] --- Inicio de la ejecución de editarPublicacion.php ---

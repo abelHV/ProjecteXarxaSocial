@@ -1,0 +1,372 @@
+/* --- Estilos específicos para la página de la Bústia (Lista de Chats) - Ajuste Final del Padding Vertical --- */
+
+.bústia-principal {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.chat-list {
+    width: 100%;
+    padding: 0;
+    list-style: none;
+}
+
+.chat-list h2 {
+    font-size: 2.2em;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.chat-list h2 img {
+    width: 30px;
+    height: 30px;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    background-color: #fff;
+    min-height: 10px; /* Podemos reducir también un poco la altura mínima */
+    height: 7em;
+    padding: 10px 15px; /* Añadido padding para que el contenido no pegue a los bordes */
+}
+
+/* --- CONTENEDOR PARA EL AVATAR EN LA LISTA DE CHATS (REFORZADO) --- */
+.chat-item-avatar {
+    height: 80px; /* Mantener un tamaño fijo */
+    width: 80px;  /* Mantener un tamaño fijo */
+    margin-right: 2em;
+    border-radius: 50%; /* Hacerlo circular */
+    overflow: hidden; /* Recortar si la imagen no es cuadrada */
+    display: flex; /* Para centrar la imagen dentro del contenedor */
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /* Evitar que se encoja */
+    background-color: #f0f0f0; /* Fondo si la imagen no carga */
+    border: 1px solid #e0e0e0; /* Pequeño borde para la imagen por defecto */
+}
+
+/* --- ESTILOS PARA LA IMAGEN DENTRO DEL CONTENEDOR DEL AVATAR EN LA LISTA DE CHATS (REFORZADO) --- */
+.chat-item-avatar img {
+    height: 100%; /* La imagen ocupa toda la altura del contenedor */
+    width: 100%;  /* La imagen ocupa todo el ancho del contenedor */
+    object-fit: cover; /* Recortar la imagen para que llene el contenedor sin distorsionarse */
+    border-radius: 50%; /* Asegurar que la imagen sea circular (aunque overflow del padre ya lo hace) */
+}
+
+.chat-item:last-child {
+    border-bottom: none;
+}
+
+.chat-item:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+/* El bloque .chat-item-image-container y su img no son necesarios si se usa .chat-item-avatar */
+/* .chat-item-image-container {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 15px;
+    flex-shrink: 0;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-item-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+} */
+
+.chat-item-info {
+    flex-grow: 1;
+    min-width: 0; /* Permite que el contenido se encoja */
+}
+
+.chat-item-info h3 {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-item-info p {
+    font-size: .9em;
+    color: #777;
+    margin-bottom: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-item-last-message {
+    font-size: 0.8em;
+    margin-right: 1em;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+    min-width: 120px;
+    margin-left: 10px;
+}
+
+.chat-item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+/* --- Estilos específicos para la página de chat (Estilo con Sidebar de Producto) --- */
+
+.chat-principal {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido *INTERNO* de .chat-principal */
+    align-items: flex-start; /* Alinea los elementos internos al inicio verticalmente */
+    width: 100%;
+    max-width: 960px; /* Ancho máximo para el contenido principal del chat */
+    padding: 15px;
+    box-sizing: border-box;
+    margin: 0 auto; /* Intenta centrar el bloque .chat-principal horizontalmente */
+}
+
+.chat-principal .chat-layout {
+    display: flex;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden; /* Para que el border-radius funcione en los hijos */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+}
+
+.chat-principal .product-info-sidebar {
+    width: 180px; /* Reducimos un poco el ancho */
+    background-color: #f7f7f7;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid #e0e0e0;
+    border-radius: 8px 0 0 8px; /* Añadimos un poco de borde redondeado en la parte izquierda */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Para la animación */
+    padding-top: 10em;
+}
+
+.chat-principal .product-info-sidebar:hover {
+    transform: scale(1.03); /* Ligeramente más grande al pasar el ratón */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada al pasar el ratón */
+}
+
+.chat-principal .product-info-sidebar img {
+    /* Eliminado margin-top: 8em; ya que parece excesivo y puede estar causando el problema de espacio */
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    object-fit: contain; /* Mantiene la proporción y muestra la imagen completa */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ligera sombra a la imagen */
+}
+
+.chat-principal .product-info-sidebar img {
+    width: 100%;       /* La imagen ocupa todo el ancho del contenedor */
+    height: 150px;      /* Establece una altura fija para todas las imágenes */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    object-fit: fill;    /* La imagen se estira para llenar el contenedor */
+}
+
+/* --- CORRECCIÓN CLAVE PARA EL TÍTULO QUE SE SALÍA --- */
+.chat-principal .product-info-sidebar h3 {
+    font-size: 0.9em; /* Reducimos un poco el tamaño de la fuente */
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 5px; /* Reducimos el margen inferior */
+    overflow: hidden;        /* Oculta cualquier contenido que desborde */
+    text-overflow: ellipsis; /* Añade "..." si el texto es demasiado largo */
+    white-space: nowrap;    /* Evita el salto de línea */
+    width: 100%; /* Asegura que ocupe el 100% del ancho disponible para que overflow funcione */
+}
+
+.chat-principal .product-info-sidebar p { /* Añadimos un párrafo si quieres mostrar más información */
+    font-size: 0.8em;
+    color: #757575;
+    text-align: center;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%; /* Igual que h3, para asegurar que overflow funcione */
+}
+
+.chat-principal .chat-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.chat-principal .usuarios {
+    background-color: #f7f7f7;
+    color: #1a1a1a;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.chat-principal .usuarios .usuario {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+/* --- ESTILOS PARA LA IMAGEN DE PERFIL EN EL CHAT INDIVIDUAL (REFORZADO) --- */
+.chat-principal .usuarios img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%; /* Hacerla circular */
+    margin-right: 8px;
+    object-fit: cover; /* Recortar la imagen para que llene el contenedor sin distorsionarse */
+    border: 1px solid #e0e0e0; /* Pequeño borde para la imagen por defecto */
+    display: block;
+    flex-shrink: 0; /* Evitar que se encoja */
+}
+
+.chat-principal .usuarios .usuario-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9em;
+    min-width: 0; /* Permite que el texto se encoja y aplique ellipsis */
+}
+
+.chat-principal .usuarios .usuario-info h3 {
+    margin: 0 0 2px 0;
+    font-weight: 500;
+    overflow: hidden; /* Añadido para manejar nombres de usuario largos */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-principal .usuarios .usuario-info p {
+    margin: 0;
+    color: #757575;
+    overflow: hidden; /* Añadido para manejar títulos de publicación largos aquí también */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-principal .mensajes {
+    padding: 10px 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height: 400px; /* Ajusta la altura fija según necesites */
+    box-sizing: border-box;
+}
+
+.chat-principal .mensaje {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+    width: fit-content;
+    max-width: 75%;
+    padding: 8px 12px;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+.chat-principal .mensaje-propio {
+    align-self: flex-end;
+    background-color: #6a93bd ;
+    color: white;
+}
+
+.chat-principal .mensaje-ajeno {
+    background-color: #fbd782 ;
+    color: #1a1a1a;
+}
+
+.chat-principal .mensaje-fecha {
+    font-size: 0.7em;
+    color: black; /* Cambiado a negro para mejor contraste con fondos de mensaje */
+    margin-top: 3px;
+}
+
+.chat-principal .mensaje-leido {
+    font-size: 0.7em;
+    color: black; /* Cambiado a negro para mejor contraste con fondos de mensaje */
+    align-self: flex-end;
+    margin-top: 3px;
+}
+
+.chat-principal .enviar-mensaje {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #e0e0e0;
+}
+
+.chat-principal .enviar-mensaje input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+    font-size: 0.9em;
+    outline: none;
+    background-color: #fff;
+}
+
+.chat-principal .enviar-mensaje input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.chat-principal .enviar-mensaje button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.chat-principal .enviar-mensaje button:hover {
+    background-color: #0056b3;
+}
